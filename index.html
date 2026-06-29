@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlendEd Sri Lanka — Blended Learning Platform</title>
+  <meta name="description" content="Practical blended learning strategies, STEM resources, and teaching tools for Sri Lankan classrooms at every digital readiness level.">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+--teal:#0a6e6e;--teal-light:#e0f4f4;--teal-mid:#1a9e9e;
+--amber:#c97b1e;--amber-light:#fef3e2;--amber-mid:#f0a830;
+--rose:#a03050;--rose-light:#fde8ee;
+--blue:#1a5fa0;--blue-light:#e6f1fb;
+--green:#2e7d32;--green-light:#e8f5e9;
+--purple:#6b3fa0;--purple-light:#f3eeff;
+--gray-0:#fff;--gray-1:#f8f9fa;--gray-2:#eef0f2;--gray-3:#dee2e6;--gray-4:#adb5bd;--gray-5:#6c757d;--gray-6:#343a40;--gray-7:#1a1e22;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--gray-1);color:var(--gray-6);line-height:1.6}
+
+/* NAV */
+nav{background:var(--teal);color:#fff;padding:0 1.5rem;display:flex;align-items:center;gap:1rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.nav-logo{font-size:1.1rem;font-weight:700;padding:0.9rem 0;flex:1;letter-spacing:-.3px}
+.nav-logo span{color:var(--amber-mid);font-style:italic}
+.nav-links{display:flex;gap:0;flex-shrink:0}
+.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.82rem;padding:.9rem .75rem;display:block;border-bottom:2px solid transparent;transition:all .2s}
+.nav-links a:hover{color:#fff;border-bottom-color:var(--amber-mid)}
+.nav-btn{background:var(--amber);color:#fff;border:none;padding:.5rem 1rem;border-radius:6px;font-size:.82rem;cursor:pointer;font-weight:600;white-space:nowrap;transition:background .2s}
+.nav-btn:hover{background:var(--amber-mid)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--teal) 0%,#085858 60%,#05413a 100%);color:#fff;padding:3rem 1.5rem 0;overflow:hidden}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.hero h1{font-size:2.2rem;font-weight:800;line-height:1.15;margin-bottom:.75rem}
+.hero h1 em{color:var(--amber-mid);font-style:normal}
+.hero p{font-size:1rem;opacity:.88;margin-bottom:1.5rem;line-height:1.7}
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn-primary{background:var(--amber);color:#fff;padding:.65rem 1.4rem;border-radius:8px;font-weight:700;font-size:.9rem;text-decoration:none;border:none;cursor:pointer;transition:all .2s}
+.btn-primary:hover{background:var(--amber-mid);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:#fff;padding:.65rem 1.4rem;border-radius:8px;font-weight:600;font-size:.9rem;border:1.5px solid rgba(255,255,255,.5);cursor:pointer;transition:all .2s;text-decoration:none}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:#fff}
+
+/* LADDER */
+.ladder-wrap{padding:1.5rem 0 0}
+.ladder-title{font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;opacity:.7;margin-bottom:1rem;text-align:center}
+.ladder{display:flex;flex-direction:column;gap:4px}
+.rung{display:flex;align-items:center;gap:.75rem;background:rgba(255,255,255,.08);border-radius:8px;padding:.55rem .9rem;border-left:3px solid transparent;transition:all .2s;cursor:pointer}
+.rung:hover{background:rgba(255,255,255,.15)}
+.rung.level0{border-left-color:#6c757d}
+.rung.level1{border-left-color:#4caf50}
+.rung.level2{border-left-color:var(--amber-mid)}
+.rung.level3{border-left-color:#26c5f3}
+.rung.level4{border-left-color:#b39ddb}
+.rung-icon{font-size:1.2rem;width:1.8rem;text-align:center}
+.rung-label{flex:1;font-size:.8rem;font-weight:600}
+.rung-sub{font-size:.72rem;opacity:.7;font-weight:400}
+.rung-tag{font-size:.65rem;padding:2px 7px;border-radius:10px;background:rgba(255,255,255,.15);white-space:nowrap}
+
+/* SECTIONS */
+.section{padding:2.5rem 1.5rem;max-width:1100px;margin:0 auto}
+.sec-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
+.sec-header h2{font-size:1.35rem;font-weight:700;color:var(--gray-7)}
+.sec-header h2 span{color:var(--teal)}
+.sec-link{font-size:.82rem;color:var(--teal);text-decoration:none;font-weight:600}
+.sec-link:hover{text-decoration:underline}
+.divider{height:1px;background:var(--gray-3);max-width:1100px;margin:0 auto}
+
+/* STATS BAR */
+.stats-bar{background:var(--teal);padding:1rem 1.5rem}
+.stats-inner{max-width:1100px;margin:0 auto;display:flex;gap:0;flex-wrap:wrap}
+.stat-item{flex:1;min-width:150px;text-align:center;padding:.5rem 1rem;border-right:1px solid rgba(255,255,255,.2)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:1.6rem;font-weight:800;color:var(--amber-mid)}
+.stat-lbl{font-size:.75rem;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.8px}
+
+/* STEM SUBJECTS */
+.stem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.875rem}
+.stem-card{border-radius:12px;padding:1.2rem 1rem;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.stem-card:hover{transform:translateY(-3px)}
+.stem-card.sci{background:var(--blue-light);border:1px solid #b5d4f4}
+.stem-card.tech{background:var(--teal-light);border:1px solid #9fd8d8}
+.stem-card.eng{background:var(--amber-light);border:1px solid #fac775}
+.stem-card.math{background:var(--green-light);border:1px solid #c0dd97}
+.stem-card.arts{background:var(--rose-light);border:1px solid #f4c0d1}
+.stem-card.ict{background:var(--purple-light);border:1px solid #ceb8f0}
+.stem-icon{font-size:2rem;margin-bottom:.5rem}
+.stem-title{font-size:.95rem;font-weight:700;margin-bottom:.2rem}
+.stem-card.sci .stem-title{color:var(--blue)}
+.stem-card.tech .stem-title{color:var(--teal)}
+.stem-card.eng .stem-title{color:var(--amber)}
+.stem-card.math .stem-title{color:var(--green)}
+.stem-card.arts .stem-title{color:var(--rose)}
+.stem-card.ict .stem-title{color:var(--purple)}
+.stem-tools{font-size:.73rem;color:var(--gray-5);line-height:1.5}
+.stem-count{position:absolute;top:.7rem;right:.7rem;font-size:.65rem;background:rgba(0,0,0,.08);padding:2px 7px;border-radius:10px;font-weight:600}
+
+/* STRATEGY CARDS */
+.strategy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.strat-card{background:var(--gray-0);border:1px solid var(--gray-3);border-radius:12px;padding:1.2rem;border-top:4px solid transparent;transition:box-shadow .2s}
+.strat-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.strat-card.l0{border-top-color:#6c757d}
+.strat-card.l1{border-top-color:#4caf50}
+.strat-card.l2{border-top-color:var(--amber)}
+.strat-card.l3{border-top-color:#1a9ece}
+.strat-card.l4{border-top-color:var(--purple)}
+.strat-level{font-size:.65rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;color:var(--gray-5);margin-bottom:.4rem}
+.strat-title{font-size:.95rem;font-weight:700;color:var(--gray-7);margin-bottom:.5rem}
+.strat-list{font-size:.78rem;color:var(--gray-5);padding-left:1rem}
+.strat-list li{margin-bottom:.25rem}
+
+/* CONTENT MANAGEMENT */
+.cm-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;border-bottom:2px solid var(--gray-3);padding-bottom:0}
+.cm-tab{background:none;border:none;padding:.6rem 1rem;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--gray-5);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.cm-tab.active{color:var(--teal);border-bottom-color:var(--teal)}
+.cm-tab:hover{color:var(--teal)}
+.add-form{background:var(--gray-0);border:1px solid var(--gray-3);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;display:none}
+.add-form.open{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+.form-row.full{grid-template-columns:1fr}
+.form-group{display:flex;flex-direction:column;gap:.3rem}
+.form-group label{font-size:.78rem;font-weight:600;color:var(--gray-6)}
+.form-group input,.form-group select,.form-group textarea{padding:.5rem .75rem;border:1px solid var(--gray-3);border-radius:6px;font-size:.85rem;font-family:inherit;background:var(--gray-1);transition:border-color .2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--teal);background:#fff}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-actions{display:flex;gap:.75rem;justify-content:flex-end}
+.btn-save{background:var(--teal);color:#fff;border:none;padding:.55rem 1.2rem;border-radius:7px;font-weight:700;font-size:.85rem;cursor:pointer}
+.btn-save:hover{background:var(--teal-mid)}
+.btn-cancel{background:none;border:1px solid var(--gray-3);color:var(--gray-5);padding:.55rem 1rem;border-radius:7px;font-size:.85rem;cursor:pointer}
+
+/* CONTENT FEED */
+.feed-controls{display:flex;gap:.75rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.search-box{flex:1;min-width:180px;padding:.5rem .9rem;border:1px solid var(--gray-3);border-radius:8px;font-size:.85rem;background:var(--gray-0)}
+.search-box:focus{outline:none;border-color:var(--teal)}
+.filter-sel{padding:.5rem .75rem;border:1px solid var(--gray-3);border-radius:8px;font-size:.82rem;background:var(--gray-0);cursor:pointer}
+.content-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.content-card{background:var(--gray-0);border:1px solid var(--gray-3);border-radius:12px;overflow:hidden;transition:all .2s}
+.content-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.1);transform:translateY(-2px)}
+.card-thumb{height:8px}
+.card-thumb.article{background:var(--teal)}
+.card-thumb.video{background:var(--rose)}
+.card-thumb.resource{background:var(--amber)}
+.card-thumb.activity{background:var(--purple)}
+.card-body{padding:1rem}
+.card-meta{display:flex;gap:.5rem;align-items:center;margin-bottom:.5rem;flex-wrap:wrap}
+.card-type{font-size:.65rem;text-transform:uppercase;letter-spacing:.8px;font-weight:700;padding:2px 8px;border-radius:10px}
+.type-article{background:var(--teal-light);color:var(--teal)}
+.type-video{background:var(--rose-light);color:var(--rose)}
+.type-resource{background:var(--amber-light);color:var(--amber)}
+.type-activity{background:var(--purple-light);color:var(--purple)}
+.card-subject{font-size:.7rem;background:var(--gray-2);color:var(--gray-5);padding:2px 8px;border-radius:10px}
+.card-level-badge{font-size:.65rem;padding:2px 7px;border-radius:10px;font-weight:600}
+.lbadge-0{background:#e8e8e8;color:#555}
+.lbadge-1{background:#e8f5e9;color:var(--green)}
+.lbadge-2{background:#fff3e0;color:#e65100}
+.lbadge-3{background:#e3f2fd;color:var(--blue)}
+.lbadge-4{background:#ede7f6;color:var(--purple)}
+.card-title{font-size:.92rem;font-weight:700;color:var(--gray-7);margin-bottom:.4rem;line-height:1.35}
+.card-desc{font-size:.78rem;color:var(--gray-5);line-height:1.5;margin-bottom:.75rem}
+.card-footer{display:flex;justify-content:space-between;align-items:center}
+.card-date{font-size:.7rem;color:var(--gray-4)}
+.card-del{background:none;border:none;font-size:.75rem;color:var(--gray-4);cursor:pointer;padding:.2rem .4rem;border-radius:4px}
+.card-del:hover{background:var(--rose-light);color:var(--rose)}
+
+/* TEACHER TOOLKIT */
+.toolkit-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.tool-card{background:var(--gray-0);border:1px solid var(--gray-3);border-radius:12px;padding:1.2rem;display:flex;gap:1rem;align-items:flex-start;transition:all .2s;cursor:pointer}
+.tool-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.09);border-color:var(--teal)}
+.tool-icon{font-size:1.6rem;flex-shrink:0;width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:var(--teal-light)}
+.tool-name{font-size:.88rem;font-weight:700;color:var(--gray-7);margin-bottom:.2rem}
+.tool-desc{font-size:.75rem;color:var(--gray-5);line-height:1.45}
+.tool-level{font-size:.65rem;margin-top:.4rem;color:var(--teal);font-weight:600}
+
+/* EMPTY STATE */
+.empty{text-align:center;padding:3rem 1rem;color:var(--gray-4)}
+.empty-icon{font-size:2.5rem;margin-bottom:.75rem}
+.empty h3{font-size:1rem;font-weight:600;color:var(--gray-5);margin-bottom:.3rem}
+.empty p{font-size:.82rem}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:flex;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.hidden{display:none}
+.modal{background:#fff;border-radius:16px;padding:1.75rem;max-width:560px;width:100%;max-height:85vh;overflow-y:auto}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem}
+.modal-title{font-size:1.1rem;font-weight:700;color:var(--gray-7)}
+.modal-close{background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--gray-4);line-height:1}
+.modal-close:hover{color:var(--gray-6)}
+.tech-item{padding:.75rem;border:1px solid var(--gray-3);border-radius:8px;margin-bottom:.6rem}
+.tech-item h4{font-size:.88rem;font-weight:700;color:var(--gray-7);margin-bottom:.25rem}
+.tech-item p{font-size:.78rem;color:var(--gray-5)}
+.tech-item .req{font-size:.7rem;color:var(--teal);font-weight:600;margin-top:.3rem}
+
+/* FOOTER */
+footer{background:var(--gray-7);color:rgba(255,255,255,.7);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:#fff}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--teal);color:#fff;padding:.75rem 1.25rem;border-radius:10px;font-size:.85rem;font-weight:600;z-index:999;transform:translateY(80px);opacity:0;transition:all .3s}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* SECTION BG ALTERNATES */
+.bg-white{background:#fff}
+.bg-gray{background:var(--gray-1)}
+
+@media(max-width:700px){
+.hero-inner{grid-template-columns:1fr}
+.ladder-wrap{display:none}
+.nav-links{display:none}
+.form-row{grid-template-columns:1fr}
+.stats-inner{gap:0}
+.stat-item{min-width:50%}
+}
+</style>
+
+<h2 class="sr-only">Blended Learning & Classroom Teaching Platform — a full-featured educational resource portal for STEM teachers</h2>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Blend<span>Ed</span> Sri Lanka</div>
+  <div class="nav-links">
+    <a href="#subjects" onclick="scrollTo('#subjects')">STEM Subjects</a>
+    <a href="#strategies" onclick="scrollTo('#strategies')">Strategies</a>
+    <a href="#resources" onclick="scrollTo('#resources')">Resources</a>
+    <a href="#toolkit" onclick="scrollTo('#toolkit')">Teacher Toolkit</a>
+  </div>
+  <button class="nav-btn" onclick="openAddModal()">+ Add Content</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Blended Learning for Every <em>Sri Lankan</em> Classroom</h1>
+      <p>From chalk-and-talk to full digital integration — practical strategies, subject resources, and teaching tools for wherever you are on the technology ladder.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="scrollToSection('resources')">Browse Resources</button>
+        <button class="btn-outline" onclick="scrollToSection('strategies')">Find Your Strategy</button>
+      </div>
+    </div>
+    <div class="ladder-wrap">
+      <div class="ladder-title">Digital Readiness Ladder</div>
+      <div class="ladder" id="ladder">
+        <div class="rung level0" onclick="filterByLevel('0')">
+          <div class="rung-icon">📋</div>
+          <div><div class="rung-label">Level 0 — Chalk & Board</div><div class="rung-sub">No digital tools needed</div></div>
+          <div class="rung-tag">Start here</div>
+        </div>
+        <div class="rung level1" onclick="filterByLevel('1')">
+          <div class="rung-icon">📻</div>
+          <div><div class="rung-label">Level 1 — Basic AV</div><div class="rung-sub">Radio, TV, printed worksheets</div></div>
+          <div class="rung-tag">Minimal</div>
+        </div>
+        <div class="rung level2" onclick="filterByLevel('2')">
+          <div class="rung-icon">📽️</div>
+          <div><div class="rung-label">Level 2 — Projector & Shared Device</div><div class="rung-sub">1 device per class, projector</div></div>
+          <div class="rung-tag">Partial</div>
+        </div>
+        <div class="rung level3" onclick="filterByLevel('3')">
+          <div class="rung-icon">💻</div>
+          <div><div class="rung-label">Level 3 — Computer Lab</div><div class="rung-sub">Shared lab, LMS access</div></div>
+          <div class="rung-tag">Moderate</div>
+        </div>
+        <div class="rung level4" onclick="filterByLevel('4')">
+          <div class="rung-icon">📱</div>
+          <div><div class="rung-label">Level 4 — 1:1 Devices</div><div class="rung-sub">Full e-Thaksalawa / LMS integration</div></div>
+          <div class="rung-tag">Full</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-num" id="stat-total">0</div><div class="stat-lbl">Resources Added</div></div>
+    <div class="stat-item"><div class="stat-num">6</div><div class="stat-lbl">STEM Subjects</div></div>
+    <div class="stat-item"><div class="stat-num">5</div><div class="stat-lbl">Digital Levels</div></div>
+    <div class="stat-item"><div class="stat-num">20+</div><div class="stat-lbl">Teaching Strategies</div></div>
+    <div class="stat-item"><div class="stat-num" id="stat-teachers">∞</div><div class="stat-lbl">Teachers Welcome</div></div>
+  </div>
+</div>
+
+<!-- STEM SUBJECTS -->
+<div id="subjects" class="section">
+  <div class="sec-header">
+    <h2>STEM <span>Subject Hubs</span></h2>
+    <span style="font-size:.82rem;color:var(--gray-5)">Click a subject for tech integration ideas</span>
+  </div>
+  <div class="stem-grid">
+    <div class="stem-card sci" onclick="showSubjectModal('science')">
+      <div class="stem-count">Sci</div>
+      <div class="stem-icon">🔬</div>
+      <div class="stem-title">Science</div>
+      <div class="stem-tools">PhET Simulations · Virtual Labs · Data loggers · Khan Academy · e-Thaksalawa</div>
+    </div>
+    <div class="stem-card tech" onclick="showSubjectModal('technology')">
+      <div class="stem-count">Tech</div>
+      <div class="stem-icon">⚙️</div>
+      <div class="stem-title">Technology</div>
+      <div class="stem-tools">Tinkercad · Arduino · 3D Printing · Design Thinking · Scratch</div>
+    </div>
+    <div class="stem-card eng" onclick="showSubjectModal('engineering')">
+      <div class="stem-count">Eng</div>
+      <div class="stem-icon">🏗️</div>
+      <div class="stem-title">Engineering</div>
+      <div class="stem-tools">GeoGebra · AutoCAD · Bridge builders · ISTEM challenges · CAD tools</div>
+    </div>
+    <div class="stem-card math" onclick="showSubjectModal('mathematics')">
+      <div class="stem-count">Math</div>
+      <div class="stem-icon">📐</div>
+      <div class="stem-title">Mathematics</div>
+      <div class="stem-tools">Desmos · GeoGebra · Wolfram Alpha · Photomath · Kahoot! quizzes</div>
+    </div>
+    <div class="stem-card arts" onclick="showSubjectModal('arts')">
+      <div class="stem-count">Arts</div>
+      <div class="stem-icon">🎨</div>
+      <div class="stem-title">Arts & Design</div>
+      <div class="stem-tools">Canva · SketchPad · Digital storytelling · Stop-motion · Sinhala tools</div>
+    </div>
+    <div class="stem-card ict" onclick="showSubjectModal('ict')">
+      <div class="stem-count">ICT</div>
+      <div class="stem-icon">💻</div>
+      <div class="stem-title">ICT & Computing</div>
+      <div class="stem-tools">Scratch · Python · Code.org · Micro:bit · Hour of Code · App Inventor</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TEACHING STRATEGIES -->
+<div id="strategies" class="section bg-gray" style="max-width:100%;padding:2.5rem 0">
+<div class="section" style="padding:0">
+  <div class="sec-header">
+    <h2>Blended Learning <span>Strategies</span></h2>
+    <span style="font-size:.82rem;color:var(--gray-5)">Matched to your digital readiness level</span>
+  </div>
+  <div class="strategy-grid">
+    <div class="strat-card l0">
+      <div class="strat-level">Level 0 · No Tech</div>
+      <div class="strat-title">Traditional Enriched</div>
+      <ul class="strat-list">
+        <li>Printed activity sheets</li>
+        <li>Cooperative learning groups</li>
+        <li>Classroom debates & Socratic circles</li>
+        <li>Concept mapping on paper</li>
+        <li>Hands-on manipulatives</li>
+      </ul>
+    </div>
+    <div class="strat-card l1">
+      <div class="strat-level">Level 1 · Basic AV</div>
+      <div class="strat-title">Audio-Visual Blend</div>
+      <ul class="strat-list">
+        <li>Radio lessons + discussion</li>
+        <li>Educational TV + worksheets</li>
+        <li>Teacher-prepared slides (printout)</li>
+        <li>Photo-based case studies</li>
+        <li>Recorded audio explanation</li>
+      </ul>
+    </div>
+    <div class="strat-card l2">
+      <div class="strat-level">Level 2 · 1 Device</div>
+      <div class="strat-title">Shared Screen Model</div>
+      <ul class="strat-list">
+        <li>Teacher-led demos on projector</li>
+        <li>Video + pause-discuss cycles</li>
+        <li>PhET / GeoGebra whole-class</li>
+        <li>Digital storytelling display</li>
+        <li>One-device polling (Mentimeter)</li>
+      </ul>
+    </div>
+    <div class="strat-card l3">
+      <div class="strat-level">Level 3 · Lab Access</div>
+      <div class="strat-title">Rotation Model</div>
+      <ul class="strat-list">
+        <li>Lab rotation (groups take turns)</li>
+        <li>e-Thaksalawa LMS lessons</li>
+        <li>Flipped classroom (watch at home)</li>
+        <li>Formative quizzes (Google Forms)</li>
+        <li>Collaborative docs / presentations</li>
+      </ul>
+    </div>
+    <div class="strat-card l4">
+      <div class="strat-level">Level 4 · 1:1 Devices</div>
+      <div class="strat-title">Flex / Full Blend</div>
+      <ul class="strat-list">
+        <li>Self-paced LMS pathways</li>
+        <li>Project-based STEM challenges</li>
+        <li>Peer review & digital portfolios</li>
+        <li>AI-assisted feedback loops</li>
+        <li>Olympiad prep via e-Thaksalawa</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTENT MANAGEMENT + FEED -->
+<div id="resources" class="section">
+  <div class="sec-header">
+    <h2>Resource <span>Library</span></h2>
+    <button class="btn-primary" onclick="openAddModal()" style="font-size:.8rem;padding:.45rem 1rem">+ Add Resource</button>
+  </div>
+
+  <!-- TABS -->
+  <div class="cm-tabs">
+    <button class="cm-tab active" onclick="switchTab('all',this)">All Resources</button>
+    <button class="cm-tab" onclick="switchTab('article',this)">Articles</button>
+    <button class="cm-tab" onclick="switchTab('video',this)">Videos</button>
+    <button class="cm-tab" onclick="switchTab('resource',this)">Downloads</button>
+    <button class="cm-tab" onclick="switchTab('activity',this)">Activities</button>
+  </div>
+
+  <!-- FEED CONTROLS -->
+  <div class="feed-controls">
+    <input class="search-box" type="text" placeholder="Search resources, topics, authors…" id="searchInput" oninput="renderFeed()">
+    <select class="filter-sel" id="subjectFilter" onchange="renderFeed()">
+      <option value="">All Subjects</option>
+      <option value="Science">Science</option>
+      <option value="Technology">Technology</option>
+      <option value="Engineering">Engineering</option>
+      <option value="Mathematics">Mathematics</option>
+      <option value="Arts & Design">Arts &amp; Design</option>
+      <option value="ICT & Computing">ICT &amp; Computing</option>
+      <option value="General">General</option>
+    </select>
+    <select class="filter-sel" id="levelFilter" onchange="renderFeed()">
+      <option value="">All Levels</option>
+      <option value="0">Level 0 — No Tech</option>
+      <option value="1">Level 1 — Basic AV</option>
+      <option value="2">Level 2 — Projector</option>
+      <option value="3">Level 3 — Lab</option>
+      <option value="4">Level 4 — 1:1 Devices</option>
+    </select>
+  </div>
+
+  <div class="content-grid" id="contentFeed"></div>
+  <div id="emptyState" class="empty" style="display:none">
+    <div class="empty-icon">📚</div>
+    <h3>No resources yet</h3>
+    <p>Add articles, videos, activities and downloads using the button above.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TEACHER TOOLKIT -->
+<div id="toolkit" class="section bg-gray" style="max-width:100%;padding:2.5rem 0">
+<div class="section" style="padding:0">
+  <div class="sec-header">
+    <h2>Teacher <span>Toolkit</span></h2>
+    <span style="font-size:.82rem;color:var(--gray-5)">Tools sorted by digital requirement</span>
+  </div>
+  <div class="toolkit-grid">
+    <div class="tool-card">
+      <div class="tool-icon">📝</div>
+      <div><div class="tool-name">Lesson Plan Builder</div><div class="tool-desc">Blended lesson templates for any subject with learning objectives, activity timing, and assessment ideas.</div><div class="tool-level">✔ All levels</div></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon" style="background:var(--amber-light)">🎯</div>
+      <div><div class="tool-name">Bloom's Taxonomy Mapper</div><div class="tool-desc">Map your activities to cognitive levels — from recall to creation — across digital and offline modes.</div><div class="tool-level">✔ All levels</div></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon" style="background:var(--rose-light)">📊</div>
+      <div><div class="tool-name">Formative Assessment Kit</div><div class="tool-desc">Exit tickets, mini-whiteboards, kahoot alternatives, and Google Forms templates for quick checks.</div><div class="tool-level">✔ Level 0–4</div></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon" style="background:var(--purple-light)">🔗</div>
+      <div><div class="tool-name">e-Thaksalawa Integration</div><div class="tool-desc">Step-by-step guide to connecting classroom activities with e-Thaksalawa LMS content and tracking.</div><div class="tool-level">✔ Level 3–4</div></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon" style="background:var(--green-light)">🏆</div>
+      <div><div class="tool-name">Olympiad Prep Module</div><div class="tool-desc">ISTEM / IOSL aligned challenges, past papers, and differentiated worksheets for Grades 6–11.</div><div class="tool-level">✔ Level 1–4</div></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon" style="background:var(--blue-light)">🌐</div>
+      <div><div class="tool-name">Free Tool Directory</div><div class="tool-desc">Curated list of zero-cost digital tools: PhET, Desmos, GeoGebra, Canva Edu, Scratch, Khan Academy.</div><div class="tool-level">✔ Level 2–4</div></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon" style="background:var(--teal-light)">📹</div>
+      <div><div class="tool-name">Video Lesson Maker Guide</div><div class="tool-desc">How to record, caption, and share short explanation videos even with a basic smartphone.</div><div class="tool-level">✔ Level 1–4</div></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-icon" style="background:var(--amber-light)">🤝</div>
+      <div><div class="tool-name">Cooperative Learning Kits</div><div class="tool-desc">Jigsaw, Think-Pair-Share, and station rotation templates that work with or without technology.</div><div class="tool-level">✔ All levels</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer>
+  <strong>BlendEd Sri Lanka</strong> · A platform for teachers, built around Sri Lanka's classrooms ·
+  Aligned with NIE curriculum, e-Thaksalawa LMS & IOSL Olympiad standards ·
+  <span style="opacity:.6">© 2025 · Add content freely — it saves in your browser</span>
+</footer>
+
+<!-- MODAL: Add Content -->
+<div class="modal-overlay hidden" id="addModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Add New Resource</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Content Type</label>
+        <select id="f-type">
+          <option value="article">📄 Article</option>
+          <option value="video">🎬 Video</option>
+          <option value="resource">📁 Download / Resource</option>
+          <option value="activity">✏️ Activity / Worksheet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select id="f-subject">
+          <option>Science</option>
+          <option>Technology</option>
+          <option>Engineering</option>
+          <option>Mathematics</option>
+          <option>Arts &amp; Design</option>
+          <option>ICT &amp; Computing</option>
+          <option>General</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" id="f-title" placeholder="e.g. Introduction to Newton's Laws using PhET">
+      </div>
+    </div>
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="f-desc" placeholder="Brief description of the content, learning objectives, or how to use it…"></textarea>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Digital Level Required</label>
+        <select id="f-level">
+          <option value="0">Level 0 — No tech needed</option>
+          <option value="1">Level 1 — Basic AV</option>
+          <option value="2">Level 2 — Projector / 1 device</option>
+          <option value="3">Level 3 — Computer lab</option>
+          <option value="4">Level 4 — 1:1 Devices</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Author / Source</label>
+        <input type="text" id="f-author" placeholder="Your name or resource source">
+      </div>
+    </div>
+    <div class="form-row full">
+      <div class="form-group">
+        <label>Link / URL (optional)</label>
+        <input type="url" id="f-url" placeholder="https://...">
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" onclick="saveContent()">Save Resource</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Subject detail -->
+<div class="modal-overlay hidden" id="subjectModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="sm-title">Science Hub</div>
+      <button class="modal-close" onclick="closeSubjectModal()">✕</button>
+    </div>
+    <div id="sm-body"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY='blended_ed_resources';
+const levelNames=['No Tech','Basic AV','Projector/1 device','Computer Lab','1:1 Devices'];
+const levelClasses=['lbadge-0','lbadge-1','lbadge-2','lbadge-3','lbadge-4'];
+let activeTab='all';
+let activeLevel=null;
+
+const subjectData={
+  science:{title:'🔬 Science Hub',items:[
+    {name:'PhET Interactive Simulations',desc:'University of Colorado free simulations for Physics, Chemistry, Biology, Earth Science.',req:'Level 2+'},
+    {name:'Virtual Lab by Labster',desc:'Virtual lab experiments with guided inquiry — excellent for O/L and A/L chemistry and biology.',req:'Level 3–4'},
+    {name:'Google Arts & Science Experiments',desc:'Browser-based science experiments — no install needed, just a browser.',req:'Level 2+'},
+    {name:'e-Thaksalawa Science Modules',desc:'NIE-aligned trilingual science content for Grades 6–13 on the national LMS.',req:'Level 3–4'},
+    {name:'Data logging with sensors',desc:'USB sensors (light, temperature, motion) connect to free Logger Lite software for real data collection.',req:'Level 3–4'},
+  ]},
+  technology:{title:'⚙️ Technology Hub',items:[
+    {name:'Tinkercad',desc:'Free browser-based 3D design and basic Arduino circuit simulation. No download needed.',req:'Level 2+'},
+    {name:'Scratch by MIT',desc:'Visual block programming for ages 8+. Works offline with download, or online.',req:'Level 2+'},
+    {name:'Design Thinking Framework',desc:'Offline design challenge cards for classroom projects — no digital tools required.',req:'Level 0'},
+    {name:'Arduino Starter Kits',desc:'Low-cost microcontroller projects for electronics and coding integration.',req:'Level 3–4'},
+    {name:'ISTEM Technology Challenges',desc:'IOSL-aligned design-build challenges for Grade 6–11 students.',req:'Level 1+'},
+  ]},
+  engineering:{title:'🏗️ Engineering Hub',items:[
+    {name:'GeoGebra',desc:'Free dynamic mathematics and geometry software — works offline, multilingual.',req:'Level 2+'},
+    {name:'Bridge building challenges',desc:'Paper/card bridge-building design challenges — full STEM with zero digital tools.',req:'Level 0'},
+    {name:'AutoCAD for Education',desc:'Free CAD software for engineering drawing — available through Autodesk Education.',req:'Level 3–4'},
+    {name:'Structural challenge kits',desc:'Spaghetti/marshmallow tower, egg drop, geodesic dome — hands-on engineering design.',req:'Level 0'},
+  ]},
+  mathematics:{title:'📐 Mathematics Hub',items:[
+    {name:'Desmos Graphing Calculator',desc:'Free browser-based graphing, perfect for functions, statistics, and geometry.',req:'Level 2+'},
+    {name:'GeoGebra Geometry',desc:'Dynamic construction for proof, geometry, and algebra. Free offline version available.',req:'Level 2+'},
+    {name:'Khan Academy',desc:'Mastery-based maths from Grade 1 to calculus — aligned loosely to O/L syllabus.',req:'Level 3–4'},
+    {name:'Manipulative-based lessons',desc:'Algebra tiles, fraction bars, geometric solids — hands-on concrete → abstract progression.',req:'Level 0'},
+    {name:'Kahoot! & Quizziz',desc:'Game-based quiz platforms for formative review — 1 device can run whole-class mode.',req:'Level 2+'},
+  ]},
+  arts:{title:'🎨 Arts & Design Hub',items:[
+    {name:'Canva for Education',desc:'Free graphic design platform with edu accounts. Great for posters, infographics, magazines.',req:'Level 2+'},
+    {name:'Stop-motion animation',desc:'Free stop-motion apps (Stop Motion Studio) — one phone or tablet per group.',req:'Level 2'},
+    {name:'Digital storytelling',desc:'Book Creator or Google Slides for student-made illustrated stories in Sinhala or Tamil.',req:'Level 3–4'},
+    {name:'Traditional craft integration',desc:'Weaving, batik, pottery — connect craft traditions to engineering and maths concepts.',req:'Level 0'},
+  ]},
+  ict:{title:'💻 ICT & Computing Hub',items:[
+    {name:'Scratch 3.0',desc:'Visual block coding — free, runs in browser or offline. Great for Grades 6–9.',req:'Level 2+'},
+    {name:'Code.org',desc:'Structured coding curriculum from drag-and-drop to JavaScript and Python.',req:'Level 3–4'},
+    {name:'Micro:bit',desc:'Pocket-sized computer for hands-on physical computing — affordable, widely used in schools.',req:'Level 2+'},
+    {name:'Python with Trinket',desc:'Browser-based Python coding — no install, free, shareable. Ideal for Grade 10–13.',req:'Level 3–4'},
+    {name:'Unplugged Computing',desc:'Computer science concepts without computers: algorithms, sorting, binary — printable activities.',req:'Level 0'},
+  ]},
+};
+
+function getResources(){
+  try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]')}catch{return[]}
+}
+function saveResources(r){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(r))}catch{}
+}
+
+function updateStats(){
+  const r=getResources();
+  document.getElementById('stat-total').textContent=r.length;
+}
+
+function renderFeed(){
+  const resources=getResources();
+  const tab=activeTab;
+  const search=document.getElementById('searchInput').value.toLowerCase();
+  const subj=document.getElementById('subjectFilter').value;
+  const lvl=document.getElementById('levelFilter').value;
+  const alv=activeLevel;
+
+  let filtered=resources.filter(r=>{
+    if(tab!=='all'&&r.type!==tab)return false;
+    if(search&&!r.title.toLowerCase().includes(search)&&!r.desc.toLowerCase().includes(search)&&!(r.author||'').toLowerCase().includes(search))return false;
+    if(subj&&r.subject!==subj)return false;
+    if(lvl!==''&&String(r.level)!==lvl)return false;
+    if(alv!==null&&String(r.level)!==String(alv))return false;
+    return true;
+  });
+
+  const grid=document.getElementById('contentFeed');
+  const empty=document.getElementById('emptyState');
+
+  if(filtered.length===0){
+    grid.innerHTML='';
+    empty.style.display='block';
+    return;
+  }
+  empty.style.display='none';
+  grid.innerHTML=filtered.reverse().map(r=>{
+    const typeClass='type-'+r.type;
+    const typeLabel=r.type==='resource'?'Download':r.type.charAt(0).toUpperCase()+r.type.slice(1);
+    const link=r.url?`<a href="${r.url}" target="_blank" style="font-size:.72rem;color:var(--teal);font-weight:600;">Open →</a>`:'';
+    return`<div class="content-card">
+      <div class="card-thumb ${r.type}"></div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-type ${typeClass}">${typeLabel}</span>
+          <span class="card-subject">${r.subject}</span>
+          <span class="card-level-badge ${levelClasses[r.level]||'lbadge-0'}">L${r.level}: ${levelNames[r.level]||'?'}</span>
+        </div>
+        <div class="card-title">${r.title}</div>
+        <div class="card-desc">${r.desc||'No description provided.'}</div>
+        <div class="card-footer">
+          <span class="card-date">${r.author?r.author+' · ':''}${r.date}</span>
+          <div style="display:flex;gap:.5rem;align-items:center">${link}<button class="card-del" onclick="deleteResource('${r.id}')">✕ Remove</button></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function deleteResource(id){
+  let r=getResources().filter(x=>x.id!==id);
+  saveResources(r);
+  renderFeed();
+  updateStats();
+  showToast('Resource removed');
+}
+
+function switchTab(tab,btn){
+  activeTab=tab;
+  activeLevel=null;
+  document.querySelectorAll('.cm-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderFeed();
+}
+
+function filterByLevel(l){
+  activeLevel=l;
+  document.getElementById('levelFilter').value=l;
+  scrollToSection('resources');
+  renderFeed();
+  showToast('Showing Level '+l+' resources');
+}
+
+function openAddModal(){
+  document.getElementById('addModal').classList.remove('hidden');
+}
+function closeModal(){
+  document.getElementById('addModal').classList.add('hidden');
+}
+function closeSubjectModal(){
+  document.getElementById('subjectModal').classList.add('hidden');
+}
+
+function saveContent(){
+  const title=document.getElementById('f-title').value.trim();
+  if(!title){showToast('Please enter a title','err');return;}
+  const r=getResources();
+  r.push({
+    id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+    type:document.getElementById('f-type').value,
+    subject:document.getElementById('f-subject').value,
+    title,
+    desc:document.getElementById('f-desc').value.trim(),
+    level:parseInt(document.getElementById('f-level').value),
+    author:document.getElementById('f-author').value.trim(),
+    url:document.getElementById('f-url').value.trim(),
+    date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})
+  });
+  saveResources(r);
+  closeModal();
+  ['f-title','f-desc','f-author','f-url'].forEach(id=>{document.getElementById(id).value='';});
+  activeTab='all';
+  document.querySelectorAll('.cm-tab').forEach((b,i)=>{b.classList.toggle('active',i===0);});
+  renderFeed();
+  updateStats();
+  showToast('Resource added successfully!');
+}
+
+function showSubjectModal(key){
+  const d=subjectData[key];
+  if(!d)return;
+  document.getElementById('sm-title').textContent=d.title;
+  document.getElementById('sm-body').innerHTML=d.items.map(i=>`
+    <div class="tech-item">
+      <h4>${i.name}</h4>
+      <p>${i.desc}</p>
+      <div class="req">📡 Requires: ${i.req}</div>
+    </div>
+  `).join('');
+  document.getElementById('subjectModal').classList.remove('hidden');
+}
+
+function scrollToSection(id){
+  const el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+let toastTimer;
+function showToast(msg,type){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.style.background=type==='err'?'var(--rose)':'var(--teal)';
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+document.getElementById('addModal').addEventListener('click',function(e){
+  if(e.target===this)closeModal();
+});
+document.getElementById('subjectModal').addEventListener('click',function(e){
+  if(e.target===this)closeSubjectModal();
+});
+
+const seed=[
+  {id:'seed1',type:'article',subject:'Science',title:'Using PhET Simulations for Newton\'s Laws — Grade 10',desc:'A complete lesson plan using free PhET simulations to teach Newton\'s three laws with a projector and one classroom computer.',level:2,author:'IOSL Content Team',url:'',date:'12 Jun 2025'},
+  {id:'seed2',type:'activity',subject:'Mathematics',title:'Desmos Polygon Exploration — Grade 8 Geometry',desc:'Students explore interior angle sums using Desmos on shared lab computers. Includes printable backup worksheet for Level 0.',level:3,author:'NIE Maths Unit',url:'',date:'5 Jun 2025'},
+  {id:'seed3',type:'video',subject:'ICT & Computing',title:'Scratch Maze Game Tutorial — Step by Step',desc:'15-minute screen-recorded tutorial showing students how to build a maze game in Scratch. Works with any level 2+ setup.',level:2,author:'BlendEd Team',url:'https://scratch.mit.edu',date:'20 May 2025'},
+  {id:'seed4',type:'resource',subject:'General',title:'Blended Learning Lesson Template (All Subjects)',desc:'A printable/editable lesson plan template with columns for both offline and online activities, aligned to Bloom\'s taxonomy levels.',level:0,author:'BlendEd Sri Lanka',url:'',date:'1 May 2025'},
+];
+
+if(!localStorage.getItem(STORAGE_KEY)){
+  saveResources(seed);
+}
+updateStats();
+renderFeed();
+</script>
+</html>
